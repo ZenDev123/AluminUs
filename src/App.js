@@ -5,7 +5,7 @@ import logo from './logo.png';
 import { auth, provider } from './firebase';
 import Home from './Elements/Home';
 import About from './Elements/About';
-import { getAuth, GoogleAuthProvider, signInWithPopup, setPersistence, browserLocalPersistence, signOut, onAuthStateChanged } from 'firebase/auth';
+import { getAuth, signInWithPopup, setPersistence, browserLocalPersistence, signOut, onAuthStateChanged } from 'firebase/auth';
 import Admin from './Elements/Admin';
 import Competitions from './Elements/Competitions';
 
@@ -58,9 +58,6 @@ function Navbar({ user, isAdmin, handleSignIn, handleSignOut }) {
 }
 
 
-function AdminPage() {
-  return <div className="hero-section"><h1>Admin Dashboard</h1></div>;
-}
 
 function App() {
   const [user, setUser] = useState(null);
