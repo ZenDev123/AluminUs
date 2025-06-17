@@ -1,0 +1,225 @@
+body {
+  margin: 0;
+  font-family: Inter;
+  /* background-color: #1f3e45; */
+  height: 2000vh;
+}
+
+.main-header {
+  position: fixed;
+  top: 0;
+  margin-top: 5px;
+  width: 92.5vw;
+  padding: 20px 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.5s ease;
+  z-index: 999;
+}
+
+.main-header.scrolled {
+  width: 70%;
+  left: 13.6%;
+  background: #1d333a7e;
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 20px 30px;
+  margin-top: 20px !important;
+}
+.left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo {
+  height: 50px;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: all 0.4s ease;
+}
+
+.logo.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.brand {
+  font-size: 21px;
+  font-weight: bold; 
+  color: white;
+  transition: opacity 0.4s ease;
+}
+
+.brand.fade-out {
+  opacity: 0;
+}
+
+.nav-links a {
+  margin: 0 12px;
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+.nav-links{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 17px;
+  font-weight: bold !important;
+  flex: 0.45;
+  margin-left: -100px;
+  width: 1000px;
+}
+.nav-links:nth-last-child{
+  margin-right: 10px;
+}
+.nav-links a.active {
+  background: rgba(255, 255, 255, 0.1);
+  padding:  10px 20px;
+  border-radius: 100px;
+  align-items: center;
+  text-align: center;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+}
+.logo-text{
+  font-size: 25px;
+  color: #000;
+  font-weight: bolder;
+}
+
+.action button {
+  background: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-weight:bolder !important;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.signup-logo {
+  height: 30px;
+}
+
+.hero-section {
+  padding-top: 150px;
+  text-align: center;
+  background: linear-gradient(135deg, #142227, #517974);
+  color: white;
+  min-height: 40vh; 
+  padding-left: 12px;
+  padding-right: 12px;
+}
+.hero-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('./noise.png');
+  opacity: 0.1;
+  pointer-events: none;
+  z-index: 0;
+}
+.slide-up {
+  opacity: 0;
+  transform: translateY(40px);
+  animation: slideUp 0.7s ease-out forwards;
+}
+
+@keyframes slideUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.main-header.light {
+  color: black;
+}
+.main-header.dark {
+  color: white;
+}
+.main-header.dark .nav-links a {
+  color: white;
+}
+.main-header.light .nav-links a {
+  color: black;
+}
+.main-header.light .action button {
+  background: black;
+  color: white;
+}
+.main-header.dark .action button {
+  background: white;
+  color: black;
+}
+.margin_top{
+  margin-top: 50px !important;
+}
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;  /* Full screen */
+  background: #fff;  /* Or your app background */
+}
+
+.pulse-logo {
+  width: 150px;  /* Adjust size as you like */
+  height: auto;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+.dot-loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  gap: 8px; /* space between dots */
+  background: #fff; /* Or your theme background */
+}
+
+.dot {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: #333; /* or your brand color */
+  animation: jump 1s infinite ease-in-out;
+}
+
+.dot:nth-child(1) {
+  animation-delay: 0s;
+}
+.dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes jump {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+/* Competitions */
