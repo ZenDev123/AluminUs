@@ -18,15 +18,12 @@ const adminEmails = [
   'admin5@example.com'
 ];
 
-
 function Navbar({ user, isAdmin, handleSignIn, handleSignOut }) {
   const location = useLocation();
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 120);
-    };
+    const handleScroll = () => setScrolled(window.scrollY > 120);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -45,10 +42,7 @@ function Navbar({ user, isAdmin, handleSignIn, handleSignOut }) {
       </nav>
       <div className="action slide-up">
         {user ? (
-          <>
-            {/* <span>{user.displayName}</span> */}
-            <button onClick={handleSignOut}>Sign Out</button>
-          </>
+          <button onClick={handleSignOut}>Sign Out</button>
         ) : (
           <button onClick={handleSignIn}>Sign In with Google</button>
         )}
@@ -57,30 +51,30 @@ function Navbar({ user, isAdmin, handleSignIn, handleSignOut }) {
   );
 }
 
-
-
 function App() {
   const [user, setUser] = useState(null);
   const [isAdmin, setIsAdmin] = useState(false);
-  const [loading, setLoading] = useState(true); // 🆕 Add loading state
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const authInstance = getAuth();
-    setPersistence(authInstance, browserLocalPersistence).then(() => {
-      onAuthStateChanged(authInstance, (u) => {
-        if (u) {
-          setUser(u);
-          setIsAdmin(adminEmails.includes(u.email));
-        } else {
-          setUser(null);
-          setIsAdmin(false);
-        }
-        setLoading(false); // 🆕 Done checking
+    setPersistence(authInstance, browserLocalPersistence)
+      .then(() => {
+        onAuthStateChanged(authInstance, (u) => {
+          if (u) {
+            setUser(u);
+            setIsAdmin(adminEmails.includes(u.email));
+          } else {
+            setUser(null);
+            setIsAdmin(false);
+          }
+          setLoading(false);
+        });
+      })
+      .catch((error) => {
+        console.error("Error setting persistence:", error);
+        setLoading(false);
       });
-    }).catch((error) => {
-      console.error("Error setting persistence:", error);
-      setLoading(false); // 🆕 Still stop loader
-    });
   }, []);
 
   const handleSignIn = async () => {
@@ -89,7 +83,6 @@ function App() {
       const signedInUser = result.user;
       setUser(signedInUser);
       setIsAdmin(adminEmails.includes(signedInUser.email));
-      
     } catch (error) {
       console.error("Login failed", error);
     }
@@ -115,8 +108,6 @@ function App() {
     );
   }
 
-
-
   if (!user) {
     return (
       <div className="login-page">
@@ -134,26 +125,31 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
-            <Route path="/competitions" element={
-              <div>
-                <div className="hero-section ">
-                  <div className='margin_top'>
-                    <h1 className="slide-up" style={{"fontSize": '52px'}}>Where Talent Meets Opportunity</h1>
-                    <p className="slide-up" style={{ animationDelay: '0.2s' }}>
-                      Discover, participate, and shine in competitions that challenge and inspire. 
-                    </p>
+            <Route
+              path="/competitions"
+              element={
+                <div>
+                  <div className="hero-section ">
+                    <div className='margin_top'>
+                      <h1 className="slide-up" style={{ fontSize: '52px' }}>Where Talent Meets Opportunity</h1>
+                      <p className="slide-up" style={{ animationDelay: '0.2s' }}>
+                        Discover, participate, and shine in competitions that challenge and inspire.
+                      </p>
+                    </div>
                   </div>
+                  <Competitions user={user} adminEmails={adminEmails} />
                 </div>
-                <Competitions user={user} adminEmails={adminEmails} />
-              </div>
-            } />
-            <Route path="/admin" element={isAdmin ? <Admin user={user} adminEmails={adminEmails} /> : <Navigate to="/" />} />
+              }
+            />
+            <Route
+              path="/admin"
+              element={isAdmin ? <Admin user={user} adminEmails={adminEmails} /> : <Navigate to="/" />}
+            />
           </Routes>
         </section>
       </main>
     </Router>
   );
 }
-
 
 export default App;
