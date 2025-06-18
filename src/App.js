@@ -12,10 +12,7 @@ import Competitions from './Elements/Competitions';
 // Your admin emails
 const adminEmails = [
   'mpritheshboopathy@gmail.com',
-  'admin2@example.com',
-  'admin3@example.com',
-  'admin4@example.com',
-  'admin5@example.com'
+  'sujaiaravindakannan@gmail.com'
 ];
 
 function Navbar({ user, isAdmin, handleSignIn, handleSignOut }) {
