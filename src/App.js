@@ -10,7 +10,6 @@ import Admin from './Elements/Admin';
 import Competitions from './Elements/Competitions';
 import Login from './Elements/Login';
 import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
-import Menu from '@mui/material/Menu';
 
 
 // Your admin emails
