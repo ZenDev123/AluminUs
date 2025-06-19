@@ -1,47 +1,13 @@
-import React, { useState } from 'react';
-import { auth } from '../firebase';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import React from 'react'
+import GoogleIcon from '@mui/icons-material/Google';
 
-const adminUIDs = [
-  "ADMIN_UID_HERE", // replace this with actual UID from Firebase console
-  "ANOTHER_ADMIN_UID_IF_NEEDED"
-];
-
-const Login = ({ setIsAdmin }) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-
-  const handleLogin = (e) => {
-    e.preventDefault();
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        const uid = userCredential.user.uid;
-        if (adminUIDs.includes(uid)) {
-          setIsAdmin(true);
-        } else {
-          setIsAdmin(false);
-        }
-      })
-      .catch((err) => {
-        console.error(err);
-        setError('Invalid credentials');
-      });
-  };
-
+const Login = ({handleSignIn}) => {
   return (
-    <div className="login-container">
-      <h2>Admin Login</h2>
-      <form onSubmit={handleLogin}>
-        <input type="email" placeholder="Email" value={email}
-          onChange={(e) => setEmail(e.target.value)} required />
-        <input type="password" placeholder="Password" value={password}
-          onChange={(e) => setPassword(e.target.value)} required />
-        <button type="submit">Login</button>
-      </form>
-      {error && <p className="error">{error}</p>}
+    <div className="login-page">
+        <h2 className='slide-up'>Welcome to AluminUS</h2>
+        <button className='login_btn' onClick={handleSignIn}><GoogleIcon />&nbsp;&nbsp;&nbsp;Sign In with Google</button>
     </div>
-  );
-};
+  )
+}
 
-export default Login;
+export default Login

@@ -55,7 +55,7 @@
   opacity: 0;
 }
 
-.nav-links a {
+a {
   margin: 0 12px;
   color: white;
   text-decoration: none;
@@ -68,14 +68,13 @@
   align-items: center;
   font-size: 17px;
   font-weight: bold !important;
-  flex: 0.45;
-  margin-left: -100px;
+  flex: 0.6;
   width: 1000px;
 }
 .nav-links:nth-last-child{
   margin-right: 10px;
 }
-.nav-links a.active {
+a.active {
   background: rgba(255, 255, 255, 0.1);
   padding:  10px 20px;
   border-radius: 100px;
@@ -95,7 +94,7 @@
   border: none;
   padding: 10px 20px;
   border-radius: 20px;
-  font-weight:bolder !important;
+  font-weight: bold !important;
   cursor: pointer;
   transition: all 0.3s ease;
 }
@@ -109,7 +108,7 @@
   text-align: center;
   background: linear-gradient(135deg, #142227, #517974);
   color: white;
-  min-height: 40vh; 
+  height: 40vh; 
   padding-left: 12px;
   padding-right: 12px;
 }
@@ -156,6 +155,7 @@
 }
 .margin_top{
   margin-top: 50px !important;
+
 }
 .loader {
   display: flex;
@@ -221,4 +221,88 @@
   }
 }
 
-/* Competitions */
+/* .login-page{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -50px;
+  margin-left: -50px;
+} */
+ .login-page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column; /* stack vertically */
+  align-items: center;     /* horizontal center */
+  justify-content: center; /* vertical center */
+  text-align: center;
+}
+.login-page h2 {
+  margin-bottom: 20px;
+}
+.login_btn{
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+  align-items: center;
+  display: flex;
+  /* width: 100px; */
+}
+button:hover{
+  cursor: pointer;
+}
+.desktop_app{
+  display: flex;
+  justify-content: space-between;
+}
+@media only screen and (max-width: 1319px) {
+  .desktop_app{
+    display: none;
+  }
+  a.active{
+    padding: 15px !important;
+  }
+  .action{
+    margin-top: 10px;
+  }
+  .options{
+    right: 10px;
+    padding: 10px;
+    border: none;
+    border-radius: 100px;
+    color: #fff;
+    background-color: #00000000;
+    margin-right: 30px;
+  }
+  .logo{
+    /* display: none; */
+  }
+}
+.hide{
+  display: none;
+}
+.open{
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 80px;
+  right: 100px;
+  background: #222;
+  padding: 20px;
+  border-radius: 10px;
+  z-index: 1000;
+  /* justify-content: space-between; */
+  width: 50%;
+  height: fit-content;
+  padding: 30px;
+  text-align: center !important;
+}
+.open > a{
+  margin: 10px;
+  padding: 10px;
+}
+@media only screen and (min-width: 1319px) {
+  .mobile_app{
+    display: none;
+  }
+}

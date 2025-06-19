@@ -8,6 +8,10 @@ import About from './Elements/About';
 import { getAuth, signInWithPopup, setPersistence, browserLocalPersistence, signOut, onAuthStateChanged } from 'firebase/auth';
 import Admin from './Elements/Admin';
 import Competitions from './Elements/Competitions';
+import Login from './Elements/Login';
+import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
+import Menu from '@mui/material/Menu';
+
 
 // Your admin emails
 const adminEmails = [
@@ -18,12 +22,14 @@ const adminEmails = [
 function Navbar({ user, isAdmin, handleSignIn, handleSignOut }) {
   const location = useLocation();
   const [scrolled, setScrolled] = useState(false);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 120);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+  console.log(open)
 
   return (
     <header className={`main-header ${scrolled ? 'scrolled' : ''}`}>
@@ -31,22 +37,42 @@ function Navbar({ user, isAdmin, handleSignIn, handleSignOut }) {
         <img src={logo} className={`logo ${scrolled ? 'visible logo' : ''}`} alt="logo" />
         <span className={`brand ${scrolled ? 'fade-out' : ''}`}>AluminUS</span>
       </div>
-      <nav className="nav-links slide-up">
-        <Link to="/" className={location.pathname === '/' ? 'active' : ''}>Home</Link>
-        <Link to="/competitions" className={location.pathname === '/competitions' ? 'active' : ''}>Competitions</Link>
-        <Link to="/about" className={location.pathname === '/about' ? 'active' : ''}>About Us</Link>
-        {isAdmin && <Link to="/admin" className={location.pathname === '/admin' ? 'active' : ''}>Admin</Link>}
-      </nav>
-      <div className="action slide-up">
-        {user ? (
-          <button onClick={handleSignOut}>Sign Out</button>
-        ) : (
-          <button onClick={handleSignIn}>Sign In with Google</button>
+      <div className='desktop_app'>
+        <nav className="nav-links slide-up">
+          <Link to="/" className={location.pathname === '/' ? 'active' : ''}>Home</Link>
+          <Link to="/competitions" className={location.pathname === '/competitions' ? 'active' : ''}>Competitions</Link>
+          <Link to="/about" className={location.pathname === '/about' ? 'active' : ''}>About Us</Link>
+          {isAdmin && <Link to="/admin" className={location.pathname === '/admin' ? 'active' : ''}>Admin</Link>}
+        </nav>
+        <div className="action slide-up">
+          {user ? (
+            <button onClick={handleSignOut}>Sign Out</button>
+          ) : (
+            ""
+          )}
+        </div>
+      </div>
+      <div className='mobile_app'><button onClick={(e) => {open === false ? setOpen(true) : setOpen(false)}} className='options'><MenuRoundedIcon /></button></div>
+      <div className={`${open === false ? 'hide' : 'open'} slide-up`}>
+        <Link to="/" onClick={() => setOpen(false)} className={location.pathname === '/' ? 'active' : ''}>Home</Link>
+        <Link to="/competitions" onClick={() => setOpen(false)} className={location.pathname === '/competitions' ? 'active' : ''}>Competitions</Link>
+        <Link to="/about" onClick={() => setOpen(false)} className={location.pathname === '/about' ? 'active' : ''}>About Us</Link>
+        {isAdmin && (
+          <Link to="/admin" onClick={() => setOpen(false)} className={location.pathname === '/admin' ? 'active' : ''}>Admin</Link>
         )}
+        <div className="action slide-up">
+          {user ? (
+            <button onClick={handleSignOut}>Sign Out</button>
+          ) : (
+            ""
+          )}
+        </div>
       </div>
     </header>
   );
 }
+
+
 
 function App() {
   const [user, setUser] = useState(null);
@@ -107,10 +133,7 @@ function App() {
 
   if (!user) {
     return (
-      <div className="login-page">
-        <h2>Welcome to AluminUS</h2>
-        <button onClick={handleSignIn}>Sign In with Google</button>
-      </div>
+      <Login handleSignIn={handleSignIn} />
     );
   }
 
