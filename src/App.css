@@ -1,9 +1,7 @@
-body {
+* {
   margin: 0;
-  font-family: Inter;
   /* background-color: #1f3e45; */
-  height: 2000vh;
-  font-family: Inter;
+  font-family: 'Inter', sans-serif;
 }
 
 .main-header {

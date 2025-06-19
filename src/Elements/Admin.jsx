@@ -144,6 +144,9 @@ const getStatus = (comp) => {
     setShowModal(true);
     setIsEditing(false);
   };
+   const handleRemoveLink = (index) => {
+    setLinks(prev => prev.filter((_, i) => i !== index));
+  };
 
   return (
     <div className="admin_page">
@@ -176,16 +179,15 @@ const getStatus = (comp) => {
             <button className="close_btn" onClick={() => setShowModal(false)}><CloseIcon /></button>
             {!isEditing ? (
               <>
-                <h2>{title}</h2>
-                <p>{desc}</p>
-                <p>From: {formatDate(selectedComp?.fromDate)}</p>
-                <p>To: {formatDate(selectedComp?.toDate)}</p>
-                      <div className='links'>
-                  
-                    {links.map((l, i) => (
-                        <a href={l.url} key={i} target="_blank" rel="noreferrer" className='link'>{l.title}</a>
-                    ))}
-                      </div>
+                <h2 className='title'>{title}</h2>
+                <p className='desc'>{desc}</p>
+                <p className='fromDate'>From: {formatDate(selectedComp?.fromDate)}</p>
+                <p className='toDate'>To: {formatDate(selectedComp?.toDate)}</p>
+                <div className='links'>
+                  {links.map((l, i) => (
+                    <a href={l.url} key={i} target="_blank" rel="noreferrer" className='link'>{l.title}</a>
+                  ))}
+                </div>
                   
                 {isAdmin && (
                   <div className='Actions_List'>
@@ -212,11 +214,14 @@ const getStatus = (comp) => {
                   <input className='link_url' type="url" placeholder="Link URL" value={linkUrl} onChange={(e) => setLinkUrl(e.target.value)} />
                   <button className='edit_btn' onClick={handleAddLink}><AddIcon /></button>
                 </div>
-                <div className="links-preview">
+                <div className="links-preview" style={{marginTop: '10px'}}>
                   <h4>Links added:</h4>
                   <div className='links'>
                     {links.map((l, i) => (
+                      <>
                         <a href={l.url} key={i} target="_blank" rel="noreferrer" className='link'>{l.title}</a>
+                        <button className='delete_btn' type="button" onClick={() => handleRemoveLink(i)}><DeleteIcon /></button>
+                      </>
                     ))}
                   </div>
                 </div>
@@ -250,12 +255,12 @@ const getStatus = (comp) => {
               ><DeleteIcon /></button>
             )}
             </div>
-            <p>
+            <p style={{marginTop: "10px"}}>
               {comp.description.length > 90
                 ? `${comp.description.slice(0, 90)}...`
                 : comp.description}
             </p>
-            <p><strong>Event Date:</strong> {formatDate(comp.fromDate)} - {formatDate(comp.toDate)}</p>
+            <p style={{marginTop: "10px"}}><strong>Event Date:</strong> {formatDate(comp.fromDate)} - {formatDate(comp.toDate)}</p>
             {/* <p><strong>To:</strong> p> */}
             
             

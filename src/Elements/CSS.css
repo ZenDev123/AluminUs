@@ -283,6 +283,8 @@
 }
 .links{
   display: flex;
+  /* margin-top: 0px; */
+  align-items: center;
 }
 .links > .link{
   text-decoration: none;
@@ -291,7 +293,7 @@
   font-size: 13px;
   border-radius: 20px;
   /* margin: 10px; */
-  margin-right: 10px;
+  margin: 10px;
   padding: 15px;
   width: 75px;
   text-align: center;
@@ -310,6 +312,8 @@
 .Desc{
   padding: 10px;
   border: 1px solid #ccc;
+  /* width: 80%; */
+  min-width: 80%;
   max-width: 80%;
   margin: 10px;
   border-radius: 5px;
@@ -352,4 +356,20 @@
   display: flex;
   justify-content: space-between;
   text-align: center !important;
+}
+.title{
+  padding: 20px;
+}
+.desc{
+  margin-top: 20px;
+  margin-left: 20px;
+}
+.fromDate{
+  margin-top: 20px;
+  margin-left: 20px;
+}
+.toDate{
+  margin-top: 20px;
+  margin-left: 20px;
+  margin-bottom: 20px;
 }
