@@ -1,5 +1,6 @@
 import React from 'react'
 import Competitions from './Competitions'
+import About from './About'
 const Home = () => {
   return (
     <div>
@@ -12,6 +13,8 @@ const Home = () => {
         </div>
       </div>
         <Competitions />
+        <h1>About Us</h1>
+        <About />
     </div>
   )
 }

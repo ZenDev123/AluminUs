@@ -22,6 +22,7 @@ const Admin = ({ user, adminEmails }) => {
 
   const isAdmin = user?.email && adminEmails.some(email => email.toLowerCase() === user.email.toLowerCase());
 
+  
   useEffect(() => {
     fetchCompetitions();
   }, []);
@@ -147,6 +148,8 @@ const getStatus = (comp) => {
    const handleRemoveLink = (index) => {
     setLinks(prev => prev.filter((_, i) => i !== index));
   };
+
+    console.log("Logged in as:", user?.email);
 
   return (
     <div className="admin_page">

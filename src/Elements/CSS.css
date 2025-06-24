@@ -373,3 +373,39 @@
   margin-left: 20px;
   margin-bottom: 20px;
 }
+/* About Us */
+.about-form {
+  margin: 2rem auto;
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  gap: 10px;
+}
+
+/* .about-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 2rem;
+} */
+
+.about-card {
+  border: 1px solid #ccc;
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  text-align: center;
+  background-color: #fff;
+  border-radius: 8px;
+  align-items: center;
+  text-align: center;
+  height: 350px;
+  justify-content: space-between;
+}
+
+.about-card img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+}

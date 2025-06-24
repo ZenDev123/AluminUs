@@ -39,7 +39,7 @@ function Navbar({ user, isAdmin, handleSignIn, handleSignOut }) {
       <div className='desktop_app'>
         <nav className="nav-links slide-up">
           <Link to="/" className={location.pathname === '/' ? 'active' : ''}>Home</Link>
-          <Link to="/competitions" className={location.pathname === '/competitions' ? 'active' : ''}>Competitions</Link>
+          <Link to="/events" className={location.pathname === '/events' ? 'active' : ''}>Events</Link>
           <Link to="/about" className={location.pathname === '/about' ? 'active' : ''}>About Us</Link>
           {isAdmin && <Link to="/admin" className={location.pathname === '/admin' ? 'active' : ''}>Admin</Link>}
         </nav>
@@ -54,7 +54,7 @@ function Navbar({ user, isAdmin, handleSignIn, handleSignOut }) {
       <div className='mobile_app'><button onClick={(e) => {open === false ? setOpen(true) : setOpen(false)}} className='options'><MenuRoundedIcon /></button></div>
       <div className={`${open === false ? 'hide' : 'open'} slide-up`}>
         <Link to="/" onClick={() => setOpen(false)} className={location.pathname === '/' ? 'active' : ''}>Home</Link>
-        <Link to="/competitions" onClick={() => setOpen(false)} className={location.pathname === '/competitions' ? 'active' : ''}>Competitions</Link>
+        <Link to="/events" onClick={() => setOpen(false)} className={location.pathname === '/events' ? 'active' : ''}>Competitions</Link>
         <Link to="/about" onClick={() => setOpen(false)} className={location.pathname === '/about' ? 'active' : ''}>About Us</Link>
         {isAdmin && (
           <Link to="/admin" onClick={() => setOpen(false)} className={location.pathname === '/admin' ? 'active' : ''}>Admin</Link>
@@ -143,9 +143,16 @@ function App() {
         <section className="section light" data-theme="light">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
+            <Route path="/about" element={<div><div className="hero-section ">
+        <div className='margin_top'>
+          <h1 className="slide-up" style={{"fontSize": '52px'}}>Our Mission, Your Success</h1>
+          <p className="slide-up" style={{ animationDelay: '0.2s' }}>
+            We’re here to empower learners and builders to reach new heights together.
+          </p>
+        </div>
+      </div><About user={user} adminEmails={adminEmails} /></div>} />
             <Route
-              path="/competitions"
+              path="/events"
               element={
                 <div>
                   <div className="hero-section ">
