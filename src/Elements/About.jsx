@@ -3,6 +3,7 @@ import { db } from '../firebase';
 import { collection, addDoc, getDocs } from 'firebase/firestore';
 import { uploadImage } from '../cloudinaryUpload';
 import { deleteDoc, doc } from 'firebase/firestore';
+import './CSS.css'
 
 
 const About = ({ user, adminEmails }) => {
@@ -73,34 +74,45 @@ const About = ({ user, adminEmails }) => {
   };
 
 
-    console.log("Logged in as:", user?.email);
+    console.log("Class", uploading);
 
   return (
     <div>
-      
+      <div className="titles">
+        <h2>
+          About Us
+        </h2>
+      </div>
       {isAdmin && (
         <form onSubmit={handleSubmit} className="about-form">
           <input
             type="text"
             placeholder="Name"
             value={name}
+            className='Title'
             maxLength={30}
             onChange={(e) => setName(e.target.value)}
           />
           <textarea
             placeholder="Short paragraph"
             value={bio}
-            maxLength={160}
+            className='Desc'
+            maxLength={180}
             onChange={(e) => setBio(e.target.value)}
           />
           <input
             type="file"
             accept="image/*"
+            className='Files'
             onChange={(e) => setImage(e.target.files[0])}
           />
-          <button type="submit" disabled={uploading}>
+          <div className="actions_btns">
+            <>&nbsp;</>
+            <button type="submit" disabled={uploading} className='update_save_btn'>
             {uploading ? 'Uploading...' : 'Add Card'}
           </button>
+          </div>
+          
         </form>
       )}
 
@@ -111,9 +123,9 @@ const About = ({ user, adminEmails }) => {
             key={idx}
             style={{ animationDelay: `${idx * 0.2}s` }}
           >
-            <img src={card.imageUrl} alt={card.name} />
-            <h3>{card.name}</h3>
-            <p>{card.bio}</p>
+            <img className='person_image' src={card.imageUrl} alt={card.name} />
+            <h3 className='person_name'>{card.name}</h3>
+            <p className='person_bio'>{card.bio}</p>
         
             {isAdmin && (
               <button
@@ -126,6 +138,7 @@ const About = ({ user, adminEmails }) => {
                     console.error('Delete failed:', err);
                   }
                 }}
+                className='delete_btn'
               >
                 Delete
               </button>

@@ -10,6 +10,7 @@ import Admin from './Elements/Admin';
 import Competitions from './Elements/Competitions';
 import Login from './Elements/Login';
 import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
+import Alumni from './Elements/Alumni';
 
 
 // Your admin emails
@@ -41,6 +42,7 @@ function Navbar({ user, isAdmin, handleSignIn, handleSignOut }) {
           <Link to="/" className={location.pathname === '/' ? 'active' : ''}>Home</Link>
           <Link to="/events" className={location.pathname === '/events' ? 'active' : ''}>Events</Link>
           <Link to="/about" className={location.pathname === '/about' ? 'active' : ''}>About Us</Link>
+          <Link to="/alumni" className={location.pathname === '/alumni' ? 'active' : ''}>Alumni</Link>
           {isAdmin && <Link to="/admin" className={location.pathname === '/admin' ? 'active' : ''}>Admin</Link>}
         </nav>
         <div className="action slide-up">
@@ -150,28 +152,42 @@ function App() {
             We’re here to empower learners and builders to reach new heights together.
           </p>
         </div>
-      </div><About user={user} adminEmails={adminEmails} /></div>} />
-            <Route
-              path="/events"
-              element={
-                <div>
-                  <div className="hero-section ">
-                    <div className='margin_top'>
-                      <h1 className="slide-up" style={{ fontSize: '52px' }}>Where Talent Meets Opportunity</h1>
-                      <p className="slide-up" style={{ animationDelay: '0.2s' }}>
-                        Discover, participate, and shine in competitions that challenge and inspire.
-                      </p>
-                    </div>
-                  </div>
-                  <Competitions user={user} adminEmails={adminEmails} />
-                </div>
-              }
-            />
-            <Route
-              path="/admin"
-              element={isAdmin ? <Admin user={user} adminEmails={adminEmails} /> : <Navigate to="/" />}
-            />
-          </Routes>
+      </div>
+      <About user={user} adminEmails={adminEmails} /></div>} />
+      <Route
+        path="/events"
+        element={
+          <div>
+            <div className="hero-section ">
+              <div className='margin_top'>
+                <h1 className="slide-up" style={{ fontSize: '52px' }}>Where Talent Meets Opportunity</h1>
+                <p className="slide-up" style={{ animationDelay: '0.2s' }}>
+                  Discover, participate, and shine in competitions that challenge and inspire.
+                </p>
+              </div>
+            </div>
+            <Competitions user={user} adminEmails={adminEmails} />
+          </div>
+        }
+      />
+      <Route
+        path="/admin"
+        element={isAdmin ? <Admin user={user} adminEmails={adminEmails} /> : <Navigate to="/" />}
+      />
+      <Route path='/alumni' element={
+          <div>
+            <div className="hero-section">
+              <div className="margin_top">
+                <h1 className="slide-up" style={{ fontSize: '52px' }}>Stay Connected, Always</h1>
+                <p className="slide-up" style={{ animationDelay: '0.2s' }}>
+                  Dive into the roots of AluminUS — discover, reconnect, and celebrate our proud alumni.
+                </p>
+              </div>
+            </div>
+            <Alumni user={user} adminEmails={adminEmails} />
+          </div>
+      } />
+      </Routes>
         </section>
       </main>
     </Router>
